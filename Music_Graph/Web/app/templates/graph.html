@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %}配乐推荐{% endblock %}
+{% block search %}
+<div class="search-area">
+    <form action="{{url_for('home')}}" method="post">
+        <input type="search" name="input" id="input" placeholder="Search">
+        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+</div>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col regular-page-content-wrapper section-padding-80">
+            <div id="main" style="width:1200px;height:600px"></div>
+
+
+<script type="text/javascript">
+    var data = {{ data|safe }};
+    var link = {{ link|safe }};
+    var myChart = echarts.init(document.getElementById('main'));
+    var categories = [];
+    categories[0] = {
+            name: '目标节点'
+        };
+    categories[1] = {
+            name: '一跳邻居'
+        };
+        categories[2] = {
+            name: '二跳邻居'
+        };
+            categories[3] = {
+            name: '三跳邻居'
+        };
+
+    option = {
+        // 图的标题
+        title: {
+            text: '音乐领域知识图谱3MKG - 节点/关系展示'
+        },
+        // 提示框的配置
+        tooltip: {
+            formatter: function (x) {
+                return x.data.des;
+            },
+        },
+        color: [
+            '#efa666',
+            '#7898e1',
+            '#f8cb7f',
+            '#63b2ee',
+            '#7cd6cf',
+    '#76da91',
+    '#f89588',
+    '#9192ab',
+    '#eddd86',
+    '#9987ce',
+    '#63b2ee',
+    '#76da91',
+    ],
+        // 工具箱
+        toolbox: {
+            // 显示工具箱
+            show: true,
+            feature: {
+                mark: {
+                    show: true
+                },
+                // 还原
+                restore: {
+                    show: true
+                },
+                // 保存为图片
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        legend: [{
+            // selectedMode: 'single',
+            data: categories.map(function (a) {
+                return a.name;
+            })
+        }],
+        series: [{
+            type: 'graph',// 类型:关系图
+            layout: 'force', //图的布局，类型为力导图
+            symbolSize: 50, // 调整节点的大小
+            roam: true, // 是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移,可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+            edgeSymbol: ['circle', 'arrow'],
+            edgeSymbolSize: [2, 5],
+            edgeLabel: {
+                normal: {
+                    textStyle: {
+                        fontSize: 100
+                    }
+                }
+            },
+            force: {
+                repulsion: 1400,
+                edgeLength: [30, 50]
+            },
+            draggable: true,
+            lineStyle: {
+                normal: {
+                    width: 2,
+                    color: '#4b565b',
+                }
+            },
+            edgeLabel: {
+                normal: {
+                    show: true,
+                    formatter: function (x) {
+                        return x.data.name;
+                    }
+                }
+            },
+            label: {
+                normal: {
+                    show: true,
+                    textStyle: {},
+                    position:'inside'
+                }
+            },
+
+            // 数据
+            data: data,
+            links: link,
+            categories: categories,
+        }]
+    };
+    myChart.setOption(option);
+</script>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

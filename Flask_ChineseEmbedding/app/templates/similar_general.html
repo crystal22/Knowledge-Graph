@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <h1> 输入一个单词，寻找相近词，如：特朗普。 </h1>
+            <br />
+            <form class="form-inline" enctype="multipart/form-data" method="post" action="{{url_for('similar_general')}}">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="keywords" placeholder="请输入关键词">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="寻找相近词">
+                </div>
+            </form>
+            <br/>
+            {% if user_input %}
+            <p>您的输入为: {{user_input}}</p>
+            {% endif %}
+            {% if result %}
+            <p>结果为:</p>
+            {% for i in result%}
+            <p>{{i}}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

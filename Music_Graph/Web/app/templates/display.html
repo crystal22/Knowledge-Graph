@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}配乐推荐{% endblock %}
+{% block search %}
+<div class="search-area">
+    <form action="{{url_for('home')}}" method="post">
+        <input type="search" name="input" id="input" placeholder="Search">
+        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+</div>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col regular-page-content-wrapper section-padding-80">
+            <video width="408" height="720" controls="controls">
+                <source src="static/upload/{{video_name}}" type="video/mp4"/>
+            </video>
+        </div>
+        <div class="col regular-page-content-wrapper section-padding-80">
+            <h5>您输入的短视频描述：</h5>
+            <p>{{desc}}</p>
+            <h5>密集视频描述生成结果：</h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>开始时间(s)</th>
+                    <th>结束时间(s)</th>
+                    <th>视频描述</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i in caption_list %}
+                <tr>
+                    <td>{{i['start']}}</td>
+                    <td>{{i['end']}}</td>
+                    <td>{{i['sentence']}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <h5>语义理解关键标签：</h5>
+            {% for i in keywords %}
+            <button type="submit" class="btn btn-default"># {{i}}</button>
+            {% endfor %}
+            <p></p>
+            <h5>视频配乐推荐列表：</h5>
+            <ul class="list-group">
+                {% for i in music %}
+                <a href="{{url_for('graph',music_name=i)}}" class="list-group-item">{{i}}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}音乐推荐{% endblock %}
+{% block search %}
+<div class="search-area">
+    <form action="{{url_for('home')}}" method="post">
+        <input type="search" name="input" id="input" placeholder="Search">
+        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+    </form>
+</div>
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col regular-page-content-wrapper section-padding-80">
+            <video width="408" height="720" controls="controls">
+                <source src="static/upload/{{video_name}}" type="video/mp4"/>
+            </video>
+        </div>
+        <div class="col regular-page-content-wrapper section-padding-80">
+            <h5>您的输入为：</h5>
+            <p>又是一年国庆，你还记得去年的大阅兵吗？15秒重温超燃瞬间！每一秒都是骄傲与自豪。</p>
+            <h5>语义理解关键标签：</h5>
+            <button type="submit" class="btn btn-default"># 骄傲</button>
+            <button type="submit" class="btn btn-default"># 阅兵</button>
+            <button type="submit" class="btn btn-default"># 人群</button>
+            <button type="submit" class="btn btn-default"># 自豪</button>
+            <button type="submit" class="btn btn-default"># 国庆</button>
+            {% endfor %}
+            <p></p>
+            <h5>音乐推荐列表：</h5>
+            <ul class="list-group">
+                {% for i in music %}
+                <a href="{{url_for('graph',music_name=i)}}" class="list-group-item">{{i}}</a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

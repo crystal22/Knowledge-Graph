@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}-短视频配乐推荐系统</title>
+    <link rel="icon" href="../static/img/logo.png">
+    <link rel="stylesheet" href="../static/css/core-style.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+    <!-- use from online-->
+    <script src="https://cdn.bootcss.com/echarts/4.1.0.rc2/echarts.js"></script>
+    <!-- use from local-->
+    <script src="/static/js/echarts.min.js"></script>
+    {% endblock %}
+</head>
+<body>
+<header class="header_area">
+    <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+        <!-- Classy Menu -->
+        <nav class="classy-navbar" id="essenceNav">
+            <!-- Logo -->
+            <a class="nav-brand" href="{{url_for('home')}}">短视频配乐推荐系统</a>
+            <!-- Navbar Toggler -->
+            <div class="classy-navbar-toggler">
+                <span class="navbarToggler"><span></span><span></span><span></span></span>
+            </div>
+            <!-- Menu -->
+            <div class="classy-menu">
+                <!-- close btn -->
+                <div class="classycloseIcon">
+                    <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                </div>
+                <!-- Nav Start -->
+                <div class="classynav">
+                    <ul>
+                        <li><a href="{{url_for('home')}}">图谱查询</a></li>
+                        <li><a href="{{url_for('home')}}">配乐推荐</a></li>
+                    </ul>
+                </div>
+                <!-- Nav End -->
+            </div>
+        </nav>
+        <!-- Header Meta Data -->
+        <div class="header-meta d-flex clearfix justify-content-end">
+            <!-- Search Area -->
+            {% block search %}{% endblock %}
+            <!-- User Login Info -->
+            <div class="user-login-info">
+                <a href="#"><img src="../static/img/user.svg" alt=""></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ##### Blog Wrapper Area Start ##### -->
+<div class="single-blog-wrapper">
+
+    <!-- Single Blog Post Thumb -->
+    <div class="single-blog-post-thumb">
+        <img src="../static/img/background.jpg" alt="">
+    </div>
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!--{% block footer %}-->
+<!--&lt;!&ndash; ##### Footer Area Start ##### &ndash;&gt;-->
+<!--<footer class="footer_area clearfix">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            &lt;!&ndash; Single Widget Area &ndash;&gt;-->
+<!--            <div class="col-12 col-md-6">-->
+<!--                <div class="single_widget_area d-flex mb-30">-->
+<!--                    &lt;!&ndash; Logo &ndash;&gt;-->
+<!--                    <div class="footer-logo mr-50">-->
+<!--                        <a href="#"><img src="../static/img/logo.png" width="100" alt=""></a>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash; Footer Menu &ndash;&gt;-->
+<!--                    <div class="footer_menu">-->
+<!--                        <ul>-->
+<!--                            <li><a href="{{url_for('home')}}">link1</a></li>-->
+<!--                            <li><a href="{{url_for('home')}}">link2</a></li>-->
+<!--                            <li><a href="{{url_for('home')}}">link3</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Single Widget Area &ndash;&gt;-->
+<!--            <div class="col-12 col-md-6">-->
+<!--                <div class="single_widget_area mb-30">-->
+<!--                    <ul class="footer_widget_menu">-->
+<!--                        <li><a href="#">link1</a></li>-->
+<!--                        <li><a href="#">link2</a></li>-->
+<!--                        <li><a href="#">link3</a></li>-->
+<!--                        <li><a href="#">link4</a></li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row mt-5">-->
+<!--            <div class="col-md-12 text-center">-->
+<!--                <p>-->
+<!--                    版权所有 &copy;<script>document.write(new Date().getFullYear());</script>-->
+<!--                    中国传媒大学 刘芮 保留所有权利-->
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</footer>-->
+<!--{% endblock %}-->
+{% block script %}
+<script src="../static/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="../static/js/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="../static/js/bootstrap.min.js"></script>
+<!-- Plugins js -->
+<script src="../static/js/plugins.js"></script>
+<!-- Classy Nav js -->
+<script src="../static/js/classy-nav.min.js"></script>
+<!-- Active js -->
+<script src="../static/js/active.js"></script>
+{% endblock %}
+</body>
+</html>
